@@ -1,0 +1,67 @@
+<div class="shell">
+  <header>
+    <h1>&gt; SONIC_KINETIC<span class="cursor">_</span></h1>
+    <p class="subtitle">// high-intensity audio-guided workout compiler</p>
+  </header>
+
+  <section class="panel config">
+    <div class="field">
+      <label for="callsign">callsign</label>
+      <input id="callsign" name="callsign" type="text" [(ngModel)]="callsign" />
+    </div>
+    <div class="field">
+      <label for="length">length_mins</label>
+      <input id="length" name="length" type="number" min="1" max="180" [(ngModel)]="lengthMins" />
+    </div>
+    <div class="field">
+      <label for="focus">focus_areas</label>
+      <input id="focus" name="focus" type="text" [(ngModel)]="focusAreasInput" placeholder="comma, separated" />
+    </div>
+    <div class="field">
+      <label for="intensity">intensity_strategy</label>
+      <select id="intensity" name="intensity" [(ngModel)]="intensity">
+        @for (opt of intensityOptions; track opt) {
+          <option [value]="opt">{{ opt }}</option>
+        }
+      </select>
+    </div>
+    <button (click)="compose()" [disabled]="loading()">
+      {{ loading() ? 'COMPILING…' : 'COMPOSE ROUTINE' }}
+    </button>
+    @if (error()) {
+      <p class="error">[ERROR] {{ error() }}</p>
+    }
+  </section>
+
+  @if (plan(); as p) {
+    <section class="panel telemetry">
+      <h2>pacing_curve // {{ p.title }}</h2>
+      <svg viewBox="0 0 300 100" preserveAspectRatio="none" class="telemetry-graph">
+        <line x1="0" y1="50" x2="300" y2="50" class="grid-line" />
+        <polyline [attr.points]="polylinePoints()" class="pulse-line" />
+      </svg>
+    </section>
+
+    <section class="panel timeline">
+      <div class="timeline-header">
+        <h2>timeline</h2>
+        <button (click)="running() ? stop() : start()">
+          {{ running() ? 'ABORT' : 'START KINETIC ROUTINE' }}
+        </button>
+      </div>
+      <ol>
+        @for (seg of p.timeline; track $index) {
+          <li [class.active]="activeIndex() === $index">
+            <span class="idx">{{ ($index + 1).toString().padStart(2, '0') }}</span>
+            <span class="phase">{{ seg.phase_name }}</span>
+            <span class="energy" [attr.data-energy]="seg.energy_level">{{ seg.energy_level }}</span>
+            <span class="cue">{{ seg.cue_script }}</span>
+            <span class="dur">
+              {{ activeIndex() === $index ? remainingSec() : seg.duration_sec }}s
+            </span>
+          </li>
+        }
+      </ol>
+    </section>
+  }
+</div>

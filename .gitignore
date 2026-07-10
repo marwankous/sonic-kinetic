@@ -1,0 +1,23 @@
+# env / secrets
+.env
+.env.local
+*.env
+!.env.example
+
+# go
+backend/sonic-kinetic-backend
+backend/*.exe
+backend/*.test
+backend/bin/
+
+# node / angular
+frontend/client/node_modules/
+frontend/client/dist/
+frontend/client/.angular/
+
+# binaries / os cruft
+*.dll
+*.so
+*.dylib
+.DS_Store
+Thumbs.db

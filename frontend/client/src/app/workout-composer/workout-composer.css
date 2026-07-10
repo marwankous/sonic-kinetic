@@ -1,0 +1,173 @@
+.shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+header h1 {
+  color: var(--neon);
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 0 0 8px var(--neon-dim);
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.subtitle {
+  color: var(--text-dim);
+  margin: 4px 0 28px;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.panel h2 {
+  color: var(--neon);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 16px;
+}
+
+.config {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.config > button {
+  grid-column: 1 / -1;
+}
+
+.error {
+  grid-column: 1 / -1;
+  color: var(--alert);
+  margin: 0;
+}
+
+.telemetry-graph {
+  width: 100%;
+  height: 140px;
+}
+
+.grid-line {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.pulse-line {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px var(--neon));
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.timeline-header h2 {
+  margin: 0;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+li {
+  display: grid;
+  grid-template-columns: 32px 140px 90px 1fr 56px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+li.active {
+  border-color: var(--alert);
+  background: #1a0a12;
+  box-shadow: 0 0 10px #ff005555;
+}
+
+.idx {
+  color: var(--text-dim);
+}
+
+.phase {
+  color: var(--neon);
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.energy {
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.energy[data-energy='Maximum'] {
+  color: var(--alert);
+  border-color: var(--alert);
+}
+
+.energy[data-energy='High'] {
+  color: var(--neon);
+  border-color: var(--neon);
+}
+
+.cue {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dur {
+  text-align: right;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+li.active .dur {
+  color: var(--alert);
+}

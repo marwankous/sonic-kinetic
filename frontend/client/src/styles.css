@@ -1,0 +1,65 @@
+:root {
+  --bg: #0a0e14;
+  --bg-panel: #0f151f;
+  --neon: #00ff66;
+  --neon-dim: #00ff6655;
+  --alert: #ff0055;
+  --text: #c8f7d8;
+  --text-dim: #6b8f7a;
+  --border: #143322;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Consolas', 'Courier New', ui-monospace, monospace;
+}
+
+body {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+}
+
+input, select, button {
+  font-family: inherit;
+  background: var(--bg-panel);
+  color: var(--neon);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 8px 10px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--neon);
+  box-shadow: 0 0 6px var(--neon-dim);
+}
+
+button {
+  cursor: pointer;
+  border-color: var(--neon);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--neon);
+  color: var(--bg);
+  box-shadow: 0 0 12px var(--neon);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
