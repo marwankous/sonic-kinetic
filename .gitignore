@@ -1,23 +1,26 @@
-# env / secrets
+# env / secrets — holds GEMINI_API_KEY / ELEVENLABS_API_KEY, never commit
 .env
 .env.local
 *.env
 !.env.example
 
-# go
+# go build output
 backend/sonic-kinetic-backend
 backend/*.exe
 backend/*.test
 backend/bin/
 
-# node / angular
+# node / angular build output and deps
 frontend/client/node_modules/
 frontend/client/dist/
 frontend/client/.angular/
 
-# binaries / os cruft
+# platform binaries / OS cruft
 *.dll
 *.so
 *.dylib
 .DS_Store
 Thumbs.db
+
+# local screen recordings dropped at repo root during demo capture
+/Enregistrement *.mp4
